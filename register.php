@@ -1,17 +1,9 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset=utf-8>
-  <title></title>
-  <link type="text/css" rel="stylesheet" href="css/login.css" />
-  <link type="text/css" rel="stylesheet" href="http://cdn.dcodes.net/2/menus/imenu/css/dc_imenu.css" />
-  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link type="text/css" rel="stylesheet" href="css/sweetalert.css" />
-  <script src="js/sweetalert.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-</head>
+<?php include_once('classes/class.header.php');
+$header = new headers();
+?>
 <body>
   <!-- DC iMenu Start -->
 <!-- look for a nice menu -->
@@ -24,7 +16,7 @@
       <input type="text" class="username" name="username" placeholder="Username">
       <div>
       </div>
-      <input type="email" class="email" name="email" placeholder="Email">
+      <input type="text" class="email" name="email" placeholder="Email">
        <div>
       </div>
       <input type="password" class="password" name="password" placeholder="Password">
@@ -40,7 +32,7 @@
 if (isset($_POST['register'])) {
   include_once('login_users.php');
   //instantiate the register users class
-  $user = new reg();
+  $user = new register();
 }
 //checks if any errors have been stored in the session
 if (isset($_SESSION['error'])) {

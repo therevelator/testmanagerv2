@@ -30,11 +30,14 @@
     }
 
     function loginUsers ($username, $password) {
+      //select the DB, apparently I have to do that everytime with PDO
       $query = $this->link->prepare("use testmanager");
       $query->execute();
       $query = $this->link->query("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
       $rowCount = $query->rowCount();
       return $rowCount;
+      //make the user login and redirect to the dashboard
+      //or make the system give an error, saying invalid credentials
     }
 
     function GetUserInfo ($username) {
