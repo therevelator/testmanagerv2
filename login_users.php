@@ -28,10 +28,10 @@ class register
       }elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope!\", \"Email must be valid\", \"error\");</script>";
         header ('Location: register.php');
-      //pass length commented for testing purposes
-      // } elseif (strlen($password) <= 7) {
-      //   return $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope!\", \"Password is too short. Try more characters\", \"error\");</script>";
-      //   header ('Location: register.php');
+      // pass length commented for testing purposes
+      } elseif (strlen($password) <= 7) {
+        return $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope!\", \"Password is too short. Try more characters\", \"error\");</script>";
+        header ('Location: register.php');
  } else {
    //like checking for username, implement a function called GetEmail and check if the e-mail has been in use before
         $check_availability = $users->GetUserInfo($username);
