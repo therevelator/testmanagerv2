@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,7 @@
     <h1>Welcome to the Test Manager V2</h1>
     <p>To sign-up for an account please fill in the form below</p>
     <form class="form" method="post" action="login_users.php">
-      <?php var_dump($_SESSION);?>
+      <?php session_start(); var_dump($_SESSION);?>
       <input type="text" class="username" name="username" placeholder="Username">
       <div>
         <!-- put errors in place, validations, etc -->

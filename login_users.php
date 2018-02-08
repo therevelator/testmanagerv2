@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //include_once('../classes/class.errors.php');
   if (isset($_POST['register'])) {
     include_once('classes/class.ManageUsers.php');
