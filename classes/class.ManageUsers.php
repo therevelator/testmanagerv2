@@ -15,9 +15,10 @@
     }
 
     function registerUsers ($username, $password, $ip_address, $reg_time, $reg_date, $email) {
-      //create prepared statement using PDO
+      //select database
       $query = $this->link->prepare("use testmanager");
       $query->execute();
+      //create prepared statement using PDO
       $query = $this->link->prepare("INSERT INTO users (username, password, ip_address, reg_time, reg_date, email) VALUES (?,?,?,?,?,?)");
       //the question marks in the VALUES paranthesis are for protecting the DB against injection
       $values = array($username, $password, $ip_address, $reg_time, $reg_date, $email);
