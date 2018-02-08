@@ -27,12 +27,30 @@
       //counts number of rows inserted
       $counts = $query->rowCount();
       return $counts;
+    }
 
+    function loginUsers ($username, $password) {
+      $query = $this->link->prepare("use testmanager");
+      $query->execute();
+      $query = $this->link->query("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
+      $rowCount = $query->rowCount();
+      return $rowCount;
+    }
+
+    function GetUserInfo ($username) {
+      $query = $this->link->prepare("use testmanager");
+      $query->execute();
+      $query = $this->link->query("SELECT 8 FROM users WHERE username = '$username'");
+      $rowCount = $query->rowCount();
+      if ($rowCount == 1) {
+        $result = $query->fetchAll();
+        return $result;
+      } else {
+        return $rowCount;
+      }
     }
 }
 
-$users = new ManageUsers();
-echo $users->registerUsers('ionut', 'pass', '127.127.127.127', '12:00:05', '07-02-2018', 'ionut.apostu@mail.com');
 
 
 
