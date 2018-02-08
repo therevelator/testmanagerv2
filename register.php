@@ -1,4 +1,4 @@
-<?php ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,29 +21,37 @@
   <div class="wrapper" >
     <h1>Welcome to the Test Manager V2</h1>
     <p>To sign-up for an account please fill in the form below</p>
-    <form class="form" method="post" action="login_users.php">
-      <?php session_start(); var_dump($_SESSION);?>
+    <form class="form" method="post" action="">
+
       <input type="text" class="username" name="username" placeholder="Username">
       <div>
-        <!-- put errors in place, validations, etc -->
+        <!-- check errors / validators -->
       </div>
       <input type="email" class="email" name="email" placeholder="Email">
        <div>
 
       </div>
-      <input type="text" class="username" name="password" placeholder="Password">
+      <input type="password" class="password" name="password" placeholder="Password">
       <div>
 
       </div>
-      <input type="text" class="username" name="repassword" placeholder="Retype Password">
+      <input type="password" class="password" name="repassword" placeholder="Retype Password">
       <div>
 
       </div>
       <input type="submit" class="submit" name="register" value="Register">
     </form>
-    <?php if (isset($_SESSION['error'])) {
-      echo $_SESSION['error'];
-    } ?>
+    <?php
+if (isset($_POST['register'])) {
+  include_once('login_users.php');
+  $user = new reg();
+}
+if (isset($_SESSION['error'])) {
+  echo $_SESSION['error'];
+}
+$_SESSION['error'] = NULL;
+
+ ?>
   </div>
 </div>
 

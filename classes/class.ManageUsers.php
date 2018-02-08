@@ -40,7 +40,7 @@
     function GetUserInfo ($username) {
       $query = $this->link->prepare("use testmanager");
       $query->execute();
-      $query = $this->link->query("SELECT 8 FROM users WHERE username = '$username'");
+      $query = $this->link->query("SELECT * FROM users WHERE username = '$username'");
       $rowCount = $query->rowCount();
       if ($rowCount == 1) {
         $result = $query->fetchAll();

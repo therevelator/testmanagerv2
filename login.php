@@ -44,6 +44,7 @@
       </div>
       <input type="submit" class="submit"  value="Log In"><br><br>
       <input type="submit" class="submit"  value="Register">
+      <a href="register.php">Temp Link</a>
     </form>
   </div>
 </div>
