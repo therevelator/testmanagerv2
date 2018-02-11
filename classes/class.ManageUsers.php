@@ -7,7 +7,7 @@
   class ManageUsers
   {
     public $link;
-
+    public $username;
     function __construct() {
       $db_connect = new dbConnect();
       $this->link = $db_connect->connect();
@@ -30,16 +30,26 @@
     }
 
     function loginUsers ($username, $password) {
-      //select the DB, apparently I have to do that everytime with PDO
+      $username = $_POST['username'];
+      $password = $_POST['password'];
       $query = $this->link->prepare("use testmanager");
       $query->execute();
-      $query = $this->link->query("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
+      $query = $this->link->prepare("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
+      $query->execute();
       $rowCount = $query->rowCount();
-      return $rowCount;
+      if ($rowCount == 1) {
+        $_SESSION['username'] = $username;
+        $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Success :)\", \"Successfully logged in, please wait\", \"success\");</script>";
+        header ('Location: dashboard.php');
+      } elseif ($rowCount == 0) {
+        $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope! \", \"Please check username / password combination...\", \"error\");</script>";
+      } else {
+        $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Hmmm... \", \"Please enter an username and a password first...\", \"warn\");</script>";
+
+      }
+
       //make the user login and redirect to the dashboard
       //or make the system give an error, saying invalid credentials
-    }
-
     function GetUserInfo ($username) {
       $query = $this->link->prepare("use testmanager");
       $query->execute();
@@ -52,19 +62,8 @@
         return $rowCount;
       }
     }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

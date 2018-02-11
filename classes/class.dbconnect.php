@@ -17,7 +17,8 @@
           $this->db_conn->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
           return $this->db_conn;
         } catch (Exception $e) {
-          var_dump ($e->getMessage());
+          $error = $e->getMessage();
+          echo $error;
     }
 
   }

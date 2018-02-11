@@ -15,40 +15,45 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 <body>
-  <!-- DC iMenu Start -->
-  <!-- choose the menu -->
-<!-- <div class="dc_imenu">
-  <ul>
-    <li class="logo"><a href="0#"><img src="http://www.dcodes.net/2/menus/imenu/images/logo.png" border="0"></a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Products</a></li>
-    <li><a href="#">Portfolio</a></li>
-    <li><a href="#">Store</a></li>
-    <li><a href="#">Contact</a></li>
-    <li class="search"><a><input type="text" value="Search" onclick="(this.value=='Search' ? this.value = '' : null)"></a></li>
-  </ul>
-</div> -->
-<!-- DC iMenu End -->
+  <?php  ?>
+<!-- menu placeholder -->
 <div align="center">
   <div class="wrapper" >
     <h1>Welcome to the Test Manager V2</h1>
     <p>Please log in using the form below</p>
     <form class="form" method="post" action="">
-      <input type="text" class="username" placeholder="Username">
-      <div>
-        <p class="name-help">Username</p>
-      </div>
-      <input type="text" class="username" placeholder="Password">
-      <div>
-        <p class="name-help">Password</p>
-      </div>
-      <input type="submit" class="submit"  value="Log In"><br><br>
-      <input type="submit" class="submit"  value="Register">
-      <a href="register.php">Temp Link</a>
+      <input type="text" class="username" name="username" placeholder="Username">
+      <input type="text" class="username"  name="password" placeholder="Password">
+      <input type="submit" class="submit"  name="login" value="Log In"><br><br>
+      <!-- <input type="submit" class="submit"  value="Register"> -->
     </form>
+    <?php
+    session_start();
+    // var_dump($_SESSION);
+    // var_dump($_POST);
+    if (isset($_POST['login']) && !empty($_POST['login'])) {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      include_once('classes/class.ManageUsers.php');
+      $login = new ManageUsers();
+      $login->loginUsers($username, $password);
+      $_SESSION['username'] = $username;
+    } else {
+      session_destroy();
+    }
+    if (isset($_SESSION['error'])) {
+      //and echoes if not empty
+      echo $_SESSION['error'];
+    }
+
+
+    // if (isset($_SESSION['username'])) {
+    //   header ('Location: dashboard.php');
+    // }
+    //after done displaying errors, unset errors variable.
+
+    ?>
   </div>
 </div>
-
-
 </body>
 </html>

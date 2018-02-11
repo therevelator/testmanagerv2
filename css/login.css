@@ -1,6 +1,7 @@
 /*dark background to support form theme*/
 body{
   background-image: url("../img/background.png");
+  margin-top: 150px;
 }
 
 /*sass variables used*/
