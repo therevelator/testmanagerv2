@@ -11,6 +11,7 @@ class headers
     echo '<head>
       <meta charset=utf-8>
       <title></title>
+      <link type="text/css" rel="stylesheet" href="css/dcodes.net.css" />
       <link type="text/css" rel="stylesheet" href="css/login.css" />
       <link type="text/css" rel="stylesheet" href="http://cdn.dcodes.net/2/menus/imenu/css/dc_imenu.css" />
       <link href=\'https://fonts.googleapis.com/css?family=Oswald\' rel=\'stylesheet\' type=\'text/css\'>

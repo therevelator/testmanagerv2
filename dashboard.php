@@ -6,9 +6,22 @@
 <link type="text/css" rel="stylesheet" href="css/macwindow.css" />
 
 <body>
-  <form class="form" method="post" align="right">
-    <input type="submit" class="submit" name="logout" value="Log Out">
+<div align="center">
+  <form class="form" method="post" align="center">
+    <!-- DC 3D Buttons Start -->
+<button class="dc_3d_button black" name="logout">Log out</button>
+<button class="dc_3d_button black" name="logout">Log out</button>
+<button class="dc_3d_button black" name="logout">Log out</button>
+<button class="dc_3d_button black" name="logout">Log out</button>
+<button class="dc_3d_button black" name="logout">Log out</button>
+<button class="dc_3d_button black" name="logout">Log out</button>
+<button class="dc_3d_button black" name="logout">Log out</button>
+<button class="dc_3d_button black" name="logout">Log out</button>
+
+<!-- DC 3D Buttons End -->
+    <!-- <input type="submit" class="submit" name="logout" value="Log Out"> -->
   </form>
+</div>
 <!-- create a class which exports html with parameters in the mac window-->
 <?php include_once('classes/class.macwindow.php');
 $macWindow = new MacWindow();//add parameters?>

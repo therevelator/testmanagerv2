@@ -8,6 +8,16 @@ class MacWindow
   function __construct()
   {
     echo '<div class="window">
+
+  <div class="content">
+  </div>
+</div>';
+}
+}
+/*
+
+this is the original mac window layout. Css is still there for now
+<div class="window">
   <div class="titlebar">
     <div class="buttons">
       <div class="close">
@@ -28,8 +38,6 @@ class MacWindow
   </div>
   <div class="content">
   </div>
-</div>';
-}
-}
+</div>*/
 
  ?>
