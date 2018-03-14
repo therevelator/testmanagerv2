@@ -1,31 +1,6 @@
 /*dark background to support form theme*/
 body{
   background-image: url("../img/background.png");
-  margin-top: 150px;
-}
-
-/*sass variables used*/
-$full:100%;
-$auto:0 auto;
-$align:center;
-
-@mixin disable{
-  outline:none;
-  border:none;
-}
-
-@mixin easeme{
-  -webkit-transition:1s ease;
-  -moz-transition:1s ease;
-  -o-transition:1s ease;
-  -ms-transition:1s ease;
-  transition:1s ease;
-}
-
-/*site container*/
-.wrapper{
-  width:420px;
-  margin:$auto;
 }
 
 h1{
@@ -45,9 +20,6 @@ p{
   margin-bottom:30px;
 }
 
-.form{
-  width:$full;
-}
 
 input[type="text"],input[type="email"],input[type="password"]{
   width:98%;
@@ -96,16 +68,4 @@ input:focus{
 input[type="submit"]:hover{
   opacity:1;
   cursor:pointer;
-}
-
-.name-help,.email-help{
-  display:none;
-  padding:0px;
-  margin:0px 0px 15px 0px;
-}
-
-.optimize{
-  position:fixed;
-  right:3%;
-  top:0px;
 }
