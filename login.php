@@ -18,14 +18,14 @@
   <?php  ?>
 <!-- menu placeholder -->
 <div align="center">
-  <div class="wrapper" >
+  <div class="wrapper" style="width: 500px; margin-top: 10%;">
     <h1>Welcome to the Test Manager V2</h1>
     <p>Please log in using the form below</p>
     <form class="form" method="post" action="">
       <input type="text" class="username" name="username" placeholder="Username">
       <input type="text" class="username"  name="password" placeholder="Password">
       <input type="submit" class="submit"  name="login" value="Log In"><br><br>
-      <!-- <input type="submit" class="submit"  value="Register"> -->
+      <input type="submit" class="submit"  value="Register">
     </form>
     <?php
     session_start();

@@ -20,5 +20,7 @@ if (isset($_POST['logout'])) {
 <?php
   include_once("classes/class.menu.php");
   $menu = new menu();
+  include_once("classes/class.table.php");
+  $menu = new table();
 ?>
 <?php  } else {echo  "<script type=\"text/javascript\">swal(\"Nope !\", \"Not allowed, redirecting...\", \"warn\");</script>"; header ('Location: login.php');} ?>
