@@ -9,9 +9,7 @@
   <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link type="text/css" rel="stylesheet" href="css/sweetalert.css" />
-
   <script src="js/sweetalert.min.js"></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -22,8 +20,8 @@
     <h1>Welcome to the Test Manager V2</h1>
     <p>Please log in using the form below</p>
     <form class="form" method="post" action="">
-      <input type="text" class="username" name="username" placeholder="Username">
-      <input type="password" class="username"  name="password" placeholder="Password">
+      <input type="text" class="username" name="username" style="height: 50px;" placeholder="Username">
+      <input type="password" class="username"  name="password" style="height: 50px;" placeholder="Password">
       <input type="submit" class="submit"  name="login" value="Log In"><br><br>
       <!-- <input type="submit" class="submit"  value="Register"> -->
     </form>
