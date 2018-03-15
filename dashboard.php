@@ -37,7 +37,7 @@ if (isset($_POST['logout'])) {
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="AddRecord">Add Record</button>
-      <input type="text" placeholder="Search.." onkeyup="showResult(this.value)" style="width: 300px;height: 40px;margin-top: 7px;">
+      <input type="text" placeholder="Search.." onkeyup="showResult(this.value)" style="width: 300px;height: 40px;margin-top: 7px; text-align: center; color: aliceblue;">
   </form>
 </div>
 <form>
@@ -56,13 +56,17 @@ if (isset($_POST['logout'])) {
 		</thead>
 		<tbody>
 <?php
+var_dump($_POST);
   include_once("classes/class.menu.php");
   $menu = new menu();
   if (isset($_POST['AddRecord'])) {
-    unset($table);
     include_once("classes/class.table.php");
     $table = new table();
     $table->addproject();
+    if (isset($_POST['Add'])) {
+      $name = $_POST['ProjectName'];
+      $description = $_POST['Description'];
+    }
   }
   include_once("classes/class.table.php");
   $table = new table();

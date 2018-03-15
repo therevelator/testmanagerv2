@@ -37,15 +37,15 @@ class table
 
   function addproject () {
         echo '<tr>
+        <form method="post" action="'; echo htmlspecialchars($_SERVER["PHP_SELF"]); echo '">
           <td>ID</td>
-          <td><input type="text" name="ProjectName" style="height: 40px;"></td>
+          <td><input type="text"  name="ProjectName" style="height: 40px; text-align: center; color: aliceblue;"></td>
           <td>'; echo $_SESSION['username']; echo'</td>
-          <td><input type="text" name="Description" style="height: 40px;"></td>
-          <form method="post">
-          <td>
-          <button class="btndelete" name="Add" >Add</button>
-          <button class="btndetails" name="Done" >Done</button>
-          </td>
+          <td><input type="text" name="Description" style="height: 40px; text-align: center; color: aliceblue;"></td>
+            <td>
+              <button type="submit"  class="btndelete" name="Add" >Add</button>
+              <button class="btndetails" name="Done" >Done</button>
+            </td>
           </form>
         </tr>';
   }
