@@ -37,26 +37,36 @@ if (isset($_POST['logout'])) {
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="AddRecord">Add Record</button>
-      <input type="text" placeholder="Search.." onkeyup="showResult(this.value)">
+      <input type="text" placeholder="Search.." onkeyup="showResult(this.value)" style="width: 300px;height: 40px;margin-top: 7px;">
   </form>
 </div>
-
 <form>
       <div id="livesearch"></div>
 </form>
+<div class="container">
+  <table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Created By</th>
+				<th>Description</th>
+        <th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
 <?php
   include_once("classes/class.menu.php");
   $menu = new menu();
-  include_once("classes/class.table.php");
-  $table = new table();
-
-  $table->rendertable();
   if (isset($_POST['AddRecord'])) {
     unset($table);
     include_once("classes/class.table.php");
     $table = new table();
     $table->addproject();
   }
-
+  include_once("classes/class.table.php");
+  $table = new table();
+  $table->rendertable();
 ?>
+</div>
 <?php  } else {echo  "<script type=\"text/javascript\">swal(\"Nope !\", \"Not allowed, redirecting...\", \"warn\");</script>"; header ('Location: login.php');} ?>

@@ -2,44 +2,18 @@
 include_once("class.dbconnect.php");
 $connection = new dbConnect();
 /**
- * This class loads the table template
+ * This class loads the table template and the add new template
  */
 class table
 {
-
   function rendertable()
   {
-    echo '<div class="container">
-	<table>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Created By</th>
-				<th>Description</th>
-        <th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>';
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
     $sql="SELECT ID, ProjectName, CreatedBy, Description FROM projects ORDER BY ID";
     $result=mysqli_query($link,$sql);
-    // echo '<tr>
-    //   <td></td>
-    //   <td><input type="text" name="ProjectName" style="height: 25px;"></td>
-    //   <td></td>
-    //   <td><input type="text" name="Description" style="height: 25px;"></td>
-    //   <form method="post">
-    //   <td>
-    //   <button class="btndelete" name="Delete" >Add</button>
-    //   <button class="btndetails" name="Details" >Done</button>
-    //   </td>
-    //   </form>
-    // </tr>';
       while ($row = mysqli_fetch_assoc($result)) {
       $ID = $row['ID'];
         echo '
-
         <tr>
   				<td>'; echo $row['ID']; echo '</td>
   				<td>'; echo $row['ProjectName']; echo '</td>
@@ -55,67 +29,25 @@ class table
           </form>
   			</tr>';
       }
-      // echo '<tr>
-      //   <td></td>
-      //   <td><input type="text" name="ProjectName"></td>
-      //   <td></td>
-      //   <td><input type="text" name="Description"></td>
-      //   <form method="post">
-      //   <td>
-      //   <button class="btndelete" name="Delete" >Add</button>
-      //   <button class="btndetails" name="Details" >Done</button>
-      //   </td>
-      //   </form>
-      // </tr>'; FIND A WAY TO MAKE THIS WORK
+
     echo '
 		</tbody>
-	</table>
-</div>';
+	</table>';
   }
 
   function addproject () {
-    echo '<div class="container">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Created By</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>';
-    $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
-    $sql="SELECT ID, ProjectName, CreatedBy, Description FROM projects ORDER BY ID";
-    $result=mysqli_query($link,$sql);
-
         echo '<tr>
-          <td></td>
-          <td><input type="text" name="ProjectName"></td>
-          <td></td>
-          <td><input type="text" name="Description"></td>
+          <td>ID</td>
+          <td><input type="text" name="ProjectName" style="height: 40px;"></td>
+          <td>'; echo $_SESSION['username']; echo'</td>
+          <td><input type="text" name="Description" style="height: 40px;"></td>
           <form method="post">
           <td>
-          <button class="btndelete" name="Delete" >Add</button>
-          <button class="btndetails" name="Details" >Done</button>
+          <button class="btndelete" name="Add" >Add</button>
+          <button class="btndetails" name="Done" >Done</button>
           </td>
           </form>
         </tr>';
-
-    echo '
-    </tbody>
-  </table>
-  </div>';
+  }
 }
-
-function __destruct() {
-
-}
-}
-
-
-
-
-
- ?>
+?>
