@@ -1,7 +1,7 @@
 <?php
 
 /**
- *
+ * This class loads the table template
  */
 class table
 {

@@ -23,9 +23,9 @@
     <p>Please log in using the form below</p>
     <form class="form" method="post" action="">
       <input type="text" class="username" name="username" placeholder="Username">
-      <input type="text" class="username"  name="password" placeholder="Password">
+      <input type="password" class="username"  name="password" placeholder="Password">
       <input type="submit" class="submit"  name="login" value="Log In"><br><br>
-      <input type="submit" class="submit"  value="Register">
+      <!-- <input type="submit" class="submit"  value="Register"> -->
     </form>
     <?php
     session_start();
