@@ -32,22 +32,23 @@ class register
       } elseif (strlen($password) <= 7) {
         return $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope!\", \"Password is too short. Try more characters\", \"error\");</script>";
         header ('Location: register.php');
- } else {
+      } else {
    //like checking for username, implement a function called GetEmail and check if the e-mail has been in use before
         $check_availability = $users->GetUserInfo($username);
         if ($check_availability == 0) {
           $users->registerUsers ($username, $password, $ip_address, $reg_time, $reg_date, $email);
-          if ($check_availability == 1) {
-            return $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope!\", \"Username already in use\", \"error\");</script>";
+        }else{
+            return $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope!\", \"Username already in use\", \"error\");</script>";//fix this because it isn't working at the moment
             header ('Location: register.php');
             $make_sessions = $users->GetUserInfo($username);
         }
       }
+      echo  "<script type=\"text/javascript\">swal(\"Success :)\", \"The user has been successfully created!\", \"success\");</script>";
     }
-    echo  "<script type=\"text/javascript\">swal(\"Success :)\", \"The user has been successfully created!\", \"success\");</script>";
+
 
   }
-}
+
 
 
 
