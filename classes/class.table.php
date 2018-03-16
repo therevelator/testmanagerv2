@@ -43,8 +43,8 @@ class table
           <td>'; echo $_SESSION['username']; echo'</td>
           <td><input type="text" name="Description" style="height: 40px; text-align: center; color: aliceblue;"></td>
             <td>
-              <input type="submit"  class="btndelete" name="Add" >Add</input>
-              <input class="btndetails" name="Done" >Done</input>
+              <input type="submit"  class="btnadd" name="Add" value="Add">
+              <input type="submit" class="btndone" name="Done" value="Done">
             </td>
           </form>
         </tr>';

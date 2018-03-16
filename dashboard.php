@@ -40,6 +40,7 @@ if (isset($_POST['logout'])) {
   include_once('classes/class.Logout.php');
   $manageUsers = new Logout();
 }
+var_dump($_POST);
 ?>
 <div align="center">
   <form class="form" method="post" align="center">
