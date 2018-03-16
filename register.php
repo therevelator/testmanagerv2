@@ -25,7 +25,7 @@ $header = new headers();
       <input type="password" class="password" name="repassword" placeholder="Retype Password">
       <div>
       </div>
-      <input type="submit" class="submit" name="register" value="Register">
+      <input type="submit" class="loginbutton" name="register" value="Register">
     </form>
 <?php
 //check if the button is pressed

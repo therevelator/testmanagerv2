@@ -1,0 +1,12 @@
+.search {
+  position:absolute;
+  z-index:10;
+  top:45px;
+  left:60.5%;
+  background: rgba(40,40,40,1);
+  border: 1px solid rgba(40,40,40,0.4);
+  border-radius: 3px;
+  /* box-sizing:border-box; */
+  width:auto;
+  height: auto;
+}

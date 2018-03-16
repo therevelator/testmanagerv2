@@ -22,7 +22,7 @@
     <form class="form" method="post" action="">
       <input type="text" class="username" name="username" style="height: 50px;" placeholder="Username">
       <input type="password" class="username"  name="password" style="height: 50px;" placeholder="Password">
-      <input type="submit" class="submit"  name="login" value="Log In"><br><br>
+      <input type="submit" class="loginbutton"  name="login" value="Log In"><br><br>
       <!-- <input type="submit" class="submit"  value="Register"> -->
     </form>
     <?php

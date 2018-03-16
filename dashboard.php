@@ -1,4 +1,15 @@
-
+<head>
+  <meta charset=utf-8>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/dcodes.net.css" />
+  <link type="text/css" rel="stylesheet" href="css/table.css" />
+  <link type="text/css" rel="stylesheet" href="css/buttons.css" />
+  <link type="text/css" rel="stylesheet" href="css/login.css" />
+  <link type="text/css" rel="stylesheet" href="css/sweetalert.css" />
+  <link type="text/css" rel="stylesheet" href="css/search.css" />
+  <script src="js/sweetalert.min.js"></script>
+</head>
 <script>
 function showResult(str) {
   if (str.length==0) {
@@ -22,8 +33,8 @@ function showResult(str) {
   xmlhttp.send();
 }
 </script>
-<?php session_start(); var_dump($_POST); if (isset($_SESSION['username'])) {  ?>
-<?php include_once('classes/class.header.php'); $headers = new headers(); ?>
+<?php session_start(); if (isset($_SESSION['username'])) {  ?>
+<?php// include_once('classes/class.header.php'); $headers = new headers(); ?>
 <?php
 if (isset($_POST['logout'])) {
   include_once('classes/class.Logout.php');
@@ -56,7 +67,6 @@ if (isset($_POST['logout'])) {
 		</thead>
 		<tbody>
 <?php
-var_dump($_POST);
   include_once("classes/class.menu.php");
   $menu = new menu();
   if (isset($_POST['AddRecord'])) {

@@ -36,7 +36,7 @@ input[type="text"],input[type="email"],input[type="password"]{
 
 
 
-input[type="submit"]{
+.loginbutton {
   width:100%;
   padding:15px;
   border-radius:5px;
