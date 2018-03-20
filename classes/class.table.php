@@ -1,6 +1,7 @@
 <?php
 include_once("class.dbconnect.php");
-$connection = new dbConnect();
+$conn = new dbConnect();
+
 /**
  * This class loads the table template and the add new template
  */
@@ -21,10 +22,10 @@ class table
           <td>'; echo $row['Description']; echo '</td>
           <form method="post">
   				<td>
-          <button class="btndelete" name="Delete" id="'; echo $row['ID']; echo '">Delete</button>
-          <input type="hidden" name="Deletehidden" value="'; echo $row['ID']; echo '">
-          <button class="btndetails" name="Details" id="'; echo $row['ID']; echo '">Details</button>
-          <input type="hidden" name="Detailshidden" value="'; echo $row['ID']; echo '">
+          <input type="submit" class="btnadd" name="Delete" value="Delete">
+          <input type="hidden" name="DeleteID" value="'; echo $row['ID']; echo '">
+          <input type="submit" class="btndone" value="Details">
+          <input type="hidden" name="DetailsID" value="'; echo $row['ID']; echo '">
           </td>
           </form>
   			</tr>';
@@ -37,17 +38,20 @@ class table
 
   function addproject () {
         echo '<tr>
-        <form method="post" action="'; echo htmlspecialchars($_SERVER["PHP_SELF"]); echo '">
+        <form method="POST" action="dashboard.php">
           <td>ID</td>
           <td><input type="text"  name="ProjectName" style="height: 40px; text-align: center; color: aliceblue;"></td>
           <td>'; echo $_SESSION['username']; echo'</td>
           <td><input type="text" name="Description" style="height: 40px; text-align: center; color: aliceblue;"></td>
             <td>
-              <input type="submit"  class="btnadd" name="Add" value="Add">
+              <input type="submit"  class="btnadd" name="add" value="Add">
               <input type="submit" class="btndone" name="Done" value="Done">
             </td>
           </form>
         </tr>';
+
+
+
   }
 }
 ?>

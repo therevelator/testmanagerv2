@@ -1,15 +1,4 @@
-<head>
-  <meta charset=utf-8>
-  <title></title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link type="text/css" rel="stylesheet" href="css/dcodes.net.css" />
-  <link type="text/css" rel="stylesheet" href="css/table.css" />
-  <link type="text/css" rel="stylesheet" href="css/buttons.css" />
-  <link type="text/css" rel="stylesheet" href="css/login.css" />
-  <link type="text/css" rel="stylesheet" href="css/sweetalert.css" />
-  <link type="text/css" rel="stylesheet" href="css/search.css" />
-  <script src="js/sweetalert.min.js"></script>
-</head>
+
 <script>
 function showResult(str) {
   if (str.length==0) {
@@ -33,14 +22,13 @@ function showResult(str) {
   xmlhttp.send();
 }
 </script>
-<?php session_start(); if (isset($_SESSION['username'])) {  ?>
-<?php// include_once('classes/class.header.php'); $headers = new headers(); ?>
+<?php session_start(); var_dump($_POST);  if (isset($_SESSION['username'])) {  ?>
+<?php include_once('classes/class.header.php'); $headers = new headers(); ?>
 <?php
 if (isset($_POST['logout'])) {
   include_once('classes/class.Logout.php');
   $manageUsers = new Logout();
 }
-var_dump($_POST);
 ?>
 <div align="center">
   <form class="form" method="post" align="center">
@@ -55,6 +43,7 @@ var_dump($_POST);
 <form>
       <div id="livesearch"></div>
 </form>
+
 <div class="container">
   <table>
 		<thead>
@@ -74,14 +63,94 @@ var_dump($_POST);
     include_once("classes/class.table.php");
     $table = new table();
     $table->addproject();
-    if (isset($_POST['Add'])) {
-      $name = $_POST['ProjectName'];
-      $description = $_POST['Description'];
-    }
+
   }
-  include_once("classes/class.table.php");
-  $table = new table();
-  $table->rendertable();
+
+
+  if (isset($_POST['add'])) {//put this into a class
+    $user = $_SESSION['username'];
+    $name = $_POST['ProjectName'];
+    $description = $_POST['Description'];
+    $timestamp = date("Y-m-d H:i:s");
+    try {
+      $host = '127.0.0.1';
+     $db   = 'testmanager';
+     $user = 'root';
+     $pass = '';
+     $charset = 'utf8mb4';
+     if(isset($_POST['DeleteID'])){
+     $ID = $_POST['DeleteID'];
+ }
+     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+     $opt = [
+         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+         PDO::ATTR_EMULATE_PREPARES   => false,
+     ];
+     $pdo = new PDO($dsn, $user, $pass, $opt);
+    $stmt = $pdo->prepare("INSERT INTO projects(ProjectName, CreatedBy, CreatedTime, Description)
+        VALUES(:pname, :createdby, :createdtime, :description)");
+    $stmt->execute(array(
+        "pname" => $name,
+        "createdby" => $user,
+        "createdtime" => $timestamp,
+        "description" => $description
+    ));
+    }  catch (PDOException $e) {
+      echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+      exit;
+    }
+  $conn = null;
+  }
+
+  // $_POST['DeleteID'] = NULL;
+  // $_POST['Delete'] = NULL;
+  if (isset($_POST["Delete"]))
+{
+  $delete = $_POST["Delete"];
+} else {
+  $delete = NULL;
+}
+  if ($delete == "Delete") {//put this into a class
+    $user = $_SESSION['username'];
+    @$name = $_POST['ProjectName'];
+    @$description = $_POST['Description'];
+    $timestamp = date("Y-m-d H:i:s");
+    try {
+    $host = '127.0.0.1';
+    $db   = 'testmanager';
+    $user = 'root';
+    $pass = '';
+    $charset = 'utf8mb4';
+    $ID = $_POST['DeleteID'];
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    $opt = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    ];
+    $pdo = new PDO($dsn, $user, $pass, $opt);
+    $stmt = $pdo->query("DELETE FROM projects WHERE ID = '".$ID."'");
+    // while ($row = $stmt->fetch())
+    // {
+    //     echo $row['name'] . "\n";
+    // }
+    } catch (Exception $e) {
+      $error = $e->getMessage();
+      echo $error;
+    }
+}
+
+include_once("classes/class.table.php");
+$table = new table();
+$table->rendertable();
+if(isset($_SESSION['success'])) {
+
+}
 ?>
 </div>
-<?php  } else {echo  "<script type=\"text/javascript\">swal(\"Nope !\", \"Not allowed, redirecting...\", \"warn\");</script>"; header ('Location: login.php');} ?>
+<?php  } else {echo  "<script type=\"text/javascript\">swal(\"Nope !\", \"Not allowed, redirecting...\", \"warn\");</script>"; header ('Location: login.php');}
+
+
+ ?>
