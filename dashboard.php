@@ -66,7 +66,6 @@ if (isset($_POST['logout'])) {
 
   }
 
-
   if (isset($_POST['add'])) {//put this into a class
     $user = $_SESSION['username'];
     $name = $_POST['ProjectName'];
