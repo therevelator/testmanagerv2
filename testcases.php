@@ -91,7 +91,7 @@ if (isset($_POST['logout'])) {
         VALUES(:pname, :createdby, :createdtime, :description)");
     $stmt->execute(array(
         "pname" => $name,
-        "createdby" => $_SESSION['username'],
+        "createdby" => $user,
         "createdtime" => $timestamp,
         "description" => $description
     ));
@@ -110,10 +110,7 @@ if (isset($_POST['logout'])) {
 } else {
   $delete = NULL;
 }
-  if ($delete == "Delete") {
-
-
-
+  if ($delete == "Delete") {//put this into a class
     $user = $_SESSION['username'];
     @$name = $_POST['ProjectName'];
     @$description = $_POST['Description'];
@@ -142,28 +139,14 @@ if (isset($_POST['logout'])) {
       $error = $e->getMessage();
       echo $error;
     }
-
-
-}
-
-if (isset($_POST["DetailsID"]))
-{
-$posted_details_id = $_POST["DetailsID"];
-$_SESSION['posted_details_id'] = $posted_details_id;
-// echo  '<script type="text/javascript">swal("Please wait ...", "Getting project details...", "warn");</script>';
-$posted_details_id = NULL;
 }
 
 include_once("classes/class.table.php");
 $table = new table();
-$table->rendertable();
+$table->rendertestcases();
 if(isset($_SESSION['success'])) {
 
 }
-
-
-
-
 ?>
 </div>
 <?php  } else {echo  "<script type=\"text/javascript\">swal(\"Nope !\", \"Not allowed, redirecting...\", \"warn\");</script>"; header ('Location: login.php');}

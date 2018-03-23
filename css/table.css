@@ -39,7 +39,7 @@ th {
 td {
   width: 50px;
 	padding: 5px;
-	background-color: rgba(200,200,200,0.2);
+	background-color: darkgray;
 	color: #000;
 	border: 1px;
 }
