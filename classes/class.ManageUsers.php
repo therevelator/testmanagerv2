@@ -39,7 +39,7 @@
       $rowCount = $query->rowCount();
       if ($rowCount == 1) {
         $_SESSION['username'] = $username;
-        $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Success :)\", \"Successfully logged in, please wait\", \"success\");</script>";
+      //  $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Success :)\", \"Successfully logged in, please wait\", \"success\");</script>";
         header ('Location: dashboard.php');
       } elseif ($rowCount == 0) {
         $_SESSION['error'] = "<script type=\"text/javascript\">swal(\"Nope! \", \"Please check username / password combination...\", \"error\");</script>";

@@ -51,7 +51,7 @@ if (isset($_POST['logout'])) {
 				<th>ID</th>
 				<th>Name</th>
 				<th>Created By</th>
-				<th>Description</th>
+				<th>Project ID</th>
         <th>Actions</th>
 			</tr>
 		</thead>
@@ -62,7 +62,7 @@ if (isset($_POST['logout'])) {
   if (isset($_POST['AddRecord'])) {
     include_once("classes/class.table.php");
     $table = new table();
-    $table->addproject();
+    $table->addtestcase();
 
   }
 

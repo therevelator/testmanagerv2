@@ -42,17 +42,18 @@ class table
   function rendertestcases()
   {
     $posted_details_id = $_SESSION['posted_details_id'];
+    var_dump($_SESSION);
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
-    $sql="SELECT ID, ProjectName, CreatedBy, Description FROM projects WHERE ID = $posted_details_id";
+    $sql="SELECT ID, Name, section, ProjectID FROM testcase WHERE ProjectID = $posted_details_id";
     $result=mysqli_query($link,$sql);
       while ($row = mysqli_fetch_assoc($result)) {
       $ID = $row['ID'];
         echo '
         <tr>
   				<td>'; echo $row['ID']; echo '</td>
-  				<td>'; echo $row['ProjectName']; echo '</td>
-  				<td>'; echo $row['CreatedBy']; echo '</td>
-          <td>'; echo $row['Description']; echo '</td>
+  				<td>'; echo $row['Name']; echo '</td>
+  				<td>'; echo $row['section']; echo '</td>
+          <td>'; echo $row['ProjectID']; echo '</td>
           <form method="post">
   				<td>
           <input type="submit" class="btnadd" name="Delete" value="Delete">
@@ -76,6 +77,24 @@ class table
           <td><input type="text"  name="ProjectName" style="height: 40px; text-align: center; color: aliceblue;"></td>
           <td>'; echo $_SESSION['username']; echo'</td>
           <td><input type="text" name="Description" style="height: 40px; text-align: center; color: aliceblue;"></td>
+            <td>
+              <input type="submit"  class="btnadd" name="add" value="Add">
+              <input type="submit" class="btndone" name="Done" value="Done">
+            </td>
+          </form>
+        </tr>';
+
+
+
+  }
+
+  function addtestcase () {
+        echo '<tr>
+        <form method="POST" action="dashboard.php">
+          <td>ID</td>
+          <td><input type="text"  name="ProjectName" style="height: 40px; text-align: center; color: aliceblue;"></td>
+          <td>'; echo $_SESSION['username']; echo'</td>
+          <td>'; echo $_SESSION['posted_details_id']; echo'</td>
             <td>
               <input type="submit"  class="btnadd" name="add" value="Add">
               <input type="submit" class="btndone" name="Done" value="Done">

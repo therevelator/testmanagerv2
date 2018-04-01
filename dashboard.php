@@ -67,6 +67,7 @@ if (isset($_POST['logout'])) {
   }
 
   if (isset($_POST['add'])) {//put this into a class
+    if (!empty($_POST['ProjectName']) && !empty($_POST['Description'])) {
     $user = $_SESSION['username'];
     $name = $_POST['ProjectName'];
     $description = $_POST['Description'];
@@ -100,20 +101,21 @@ if (isset($_POST['logout'])) {
       exit;
     }
   $conn = null;
-  }
+  echo "<script type=\"text/javascript\">swal(\"Success :)\", \"Record added...\", \"success\");</script>";
+} else {
+  echo "<script type=\"text/javascript\">swal(\"Error :(\", \"Both fields are required...\", \"error\");</script>";
 
-  // $_POST['DeleteID'] = NULL;
-  // $_POST['Delete'] = NULL;
+}
+
+}
+
   if (isset($_POST["Delete"]))
 {
   $delete = $_POST["Delete"];
 } else {
   $delete = NULL;
 }
-  if ($delete == "Delete") {
-
-
-
+  if ($delete == "Delete") {//put this into a class
     $user = $_SESSION['username'];
     @$name = $_POST['ProjectName'];
     @$description = $_POST['Description'];
@@ -134,14 +136,16 @@ if (isset($_POST['logout'])) {
     ];
     $pdo = new PDO($dsn, $user, $pass, $opt);
     $stmt = $pdo->query("DELETE FROM projects WHERE ID = '".$ID."'");
-    // while ($row = $stmt->fetch())
-    // {
-    //     echo $row['name'] . "\n";
-    // }
     } catch (Exception $e) {
       $error = $e->getMessage();
       echo $error;
     }
+
+
+
+
+
+
 
 
 }
@@ -150,9 +154,11 @@ if (isset($_POST["DetailsID"]))
 {
 $posted_details_id = $_POST["DetailsID"];
 $_SESSION['posted_details_id'] = $posted_details_id;
+var_dump($posted_details_id);
+header ('Location: testcases.php');
 // echo  '<script type="text/javascript">swal("Please wait ...", "Getting project details...", "warn");</script>';
-$posted_details_id = NULL;
 }
+$posted_details_id = NULL;
 
 include_once("classes/class.table.php");
 $table = new table();
