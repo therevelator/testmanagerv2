@@ -90,7 +90,7 @@ class table
 
   function addtestcase () {
         echo '<tr>
-        <form method="POST" action="dashboard.php">
+        <form method="POST" action="testcases.php">
           <td>ID</td>
           <td><input type="text"  name="ProjectName" style="height: 40px; text-align: center; color: aliceblue;"></td>
           <td>'; echo $_SESSION['username']; echo'</td>

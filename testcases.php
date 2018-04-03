@@ -69,7 +69,7 @@ if (isset($_POST['logout'])) {
   if (isset($_POST['add'])) {//put this into a class
     $user = $_SESSION['username'];
     $name = $_POST['ProjectName'];
-    $description = $_POST['Description'];
+    // $description = $_POST['Description'];
     $timestamp = date("Y-m-d H:i:s");
     try {
       $host = '127.0.0.1';
@@ -79,6 +79,7 @@ if (isset($_POST['logout'])) {
      $charset = 'utf8mb4';
      if(isset($_POST['DeleteID'])){
      $ID = $_POST['DeleteID'];
+
  }
      $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
      $opt = [
@@ -87,19 +88,21 @@ if (isset($_POST['logout'])) {
          PDO::ATTR_EMULATE_PREPARES   => false,
      ];
      $pdo = new PDO($dsn, $user, $pass, $opt);
-    $stmt = $pdo->prepare("INSERT INTO projects(ProjectName, CreatedBy, CreatedTime, Description)
-        VALUES(:pname, :createdby, :createdtime, :description)");
+    $stmt = $pdo->prepare("INSERT INTO testcase(Name, CreatedBy, CreatedTime, ProjectID)
+        VALUES(:pname, :createdby, :createdtime, :projectID)");
+        $projectID = $_SESSION['posted_details_id'];
     $stmt->execute(array(
         "pname" => $name,
         "createdby" => $user,
         "createdtime" => $timestamp,
-        "description" => $description
+        "projectID" => $projectID
     ));
     }  catch (PDOException $e) {
       echo "Failed to get DB handle: " . $e->getMessage() . "\n";
       exit;
     }
-  $conn = null;
+    $conn = null;
+    echo "<script type=\"text/javascript\">swal(\"Success :)\", \"Record added...\", \"success\");</script>";
   }
 
   // $_POST['DeleteID'] = NULL;
@@ -130,7 +133,7 @@ if (isset($_POST['logout'])) {
         PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
     ];
     $pdo = new PDO($dsn, $user, $pass, $opt);
-    $stmt = $pdo->query("DELETE FROM projects WHERE ID = '".$ID."'");
+    $stmt = $pdo->query("DELETE FROM testcase WHERE ID = '".$ID."'");
     // while ($row = $stmt->fetch())
     // {
     //     echo $row['name'] . "\n";
@@ -139,6 +142,8 @@ if (isset($_POST['logout'])) {
       $error = $e->getMessage();
       echo $error;
     }
+    echo "<script type=\"text/javascript\">swal(\"Deleted \", \"\", \"error\");</script>";
+
 }
 
 include_once("classes/class.table.php");
