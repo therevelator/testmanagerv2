@@ -44,7 +44,7 @@ class table
     $posted_details_id = $_SESSION['posted_details_id'];
     var_dump($_SESSION);
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
-    $sql="SELECT ID, Name, section, ProjectID FROM testcase WHERE ProjectID = $posted_details_id";
+    $sql="SELECT ID, Name, CreatedBy, ProjectID FROM testcase WHERE ProjectID = $posted_details_id";
     $result=mysqli_query($link,$sql);
       while ($row = mysqli_fetch_assoc($result)) {
       $ID = $row['ID'];
@@ -52,7 +52,7 @@ class table
         <tr>
   				<td>'; echo $row['ID']; echo '</td>
   				<td>'; echo $row['Name']; echo '</td>
-  				<td>'; echo $row['section']; echo '</td>
+  				<td>'; echo $row['CreatedBy']; echo '</td>
           <td>'; echo $row['ProjectID']; echo '</td>
           <form method="post">
   				<td>

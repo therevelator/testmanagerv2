@@ -67,7 +67,7 @@ if (isset($_POST['logout'])) {
   }
 
   if (isset($_POST['add'])) {//put this into a class
-    $user = $_SESSION['username'];
+
     if (!empty($_POST['ProjectName'])) {
     $name = $_POST['ProjectName'];
     $timestamp = date("Y-m-d H:i:s");
@@ -91,6 +91,7 @@ if (isset($_POST['logout'])) {
     $stmt = $pdo->prepare("INSERT INTO testcase(Name, CreatedBy, CreatedTime, ProjectID)
         VALUES(:pname, :createdby, :createdtime, :projectID)");
         $projectID = $_SESSION['posted_details_id'];
+        $user = $_SESSION['username'];
     $stmt->execute(array(
         "pname" => $name,
         "createdby" => $user,
