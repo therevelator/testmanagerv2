@@ -70,11 +70,10 @@ class table
     echo '
 		</tbody>
 	</table>';
-} else {
-  // header ('Location: dashboard.php');
+  } else {
   echo "<script type=\"text/javascript\">swal(\"No testcases\", \"\", \"error\");</script>";
 
-}
+  }
 }
 
 
@@ -109,9 +108,7 @@ class table
             </td>
           </form>
         </tr>';
-
-
-
+        
   }
 }
 ?>

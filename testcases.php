@@ -21,7 +21,7 @@ function showResult(str) {
       document.getElementById("livesearch").style.border="1px solid #A5ACB2";
     }
   }
-  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.open("GET","livesearchtestcases.php?q="+str,true);
   xmlhttp.send();
 }
 </script>
@@ -47,7 +47,7 @@ if (isset($_POST['back'])) {
   </form>
 </div>
 <form>
-      <div id="livesearch"></div>
+      <div id="livesearch" class="livesearch"></div>
 </form>
 
 <div class="container">
@@ -114,11 +114,6 @@ if (isset($_POST['back'])) {
     echo "<script type=\"text/javascript\">swal(\"Error :(\", \" Name field cannot be empty...\", \"error\");</script>";
   }
 }
-
-
-
-
-
 
 
   if (isset($_POST["Delete"]))

@@ -47,3 +47,16 @@ input[type="submit"]:hover{
   opacity:1;
   cursor:pointer;
 }
+
+.livesearch {
+  width: 25%;
+  margin-left: 54%;
+  position:  absolute;
+  z-index: 99 !important;
+  background-color: darkgoldenrod;
+  align-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border-color: black;
+  text-align: center;
+}
