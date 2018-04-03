@@ -1,8 +1,8 @@
 /*dark background to support form theme*/
 body{
-   background: #070000;  /* fallback for old browsers */
+  background: #070000;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #070000, #4C0001, #070000);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #070000, #4C0001, #070000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, #100000, #bd864f, #100000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
@@ -46,4 +46,17 @@ input:focus{
 input[type="submit"]:hover{
   opacity:1;
   cursor:pointer;
+}
+
+.livesearch {
+  width: 25%;
+  margin-left: 54%;
+  position:  absolute;
+  z-index: 99 !important;
+  background-color: darkgoldenrod;
+  align-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border-color: black;
+  text-align: center;
 }

@@ -44,8 +44,12 @@ if (isset($_POST['logout'])) {
   </form>
 </div>
 <form>
-      <div id="livesearch"></div>
+      <div id="livesearch" class="livesearch"></div>
 </form>
+
+
+
+
 
 <div class="container">
   <table>
