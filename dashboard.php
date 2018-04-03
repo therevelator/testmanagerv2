@@ -87,7 +87,7 @@ if (isset($_POST['logout'])) {
      $charset = 'utf8mb4';
      if(isset($_POST['DeleteID'])){
      $ID = $_POST['DeleteID'];
- }
+    }
      $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
      $opt = [
          PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -108,20 +108,20 @@ if (isset($_POST['logout'])) {
       exit;
     }
   $conn = null;
-  echo "<script type=\"text/javascript\">swal(\"Success :)\", \"Record added...\", \"success\");</script>";
+  $_POST['DeleteID'] = NULL;
+  //echo "<script type=\"text/javascript\">swal(\"Success :)\", \"Record added...\", \"success\");</script>";
 } else {
   echo "<script type=\"text/javascript\">swal(\"Error :(\", \"Both fields are required...\", \"error\");</script>";
-
 }
 
 }
 
-  if (isset($_POST["Delete"]))
-{
-  $delete = $_POST["Delete"];
-} else {
-  $delete = NULL;
-}
+    if (isset($_POST["Delete"]))
+  {
+    $delete = $_POST["Delete"];
+  } else {
+    $delete = NULL;
+  }
   if ($delete == "Delete") {//put this into a class
     $user = $_SESSION['username'];
     @$name = $_POST['ProjectName'];
@@ -143,38 +143,26 @@ if (isset($_POST['logout'])) {
     ];
     $pdo = new PDO($dsn, $user, $pass, $opt);
     $stmt = $pdo->query("DELETE FROM projects WHERE ID = '".$ID."'");
+    echo "<script type=\"text/javascript\">swal(\"Project deleted\", \"\", \"error\");</script>";
     } catch (Exception $e) {
       $error = $e->getMessage();
-      echo $error;
+        echo "<script type=\"text/javascript\">swal(\"Can't delete project\", \"Project not empty\", \"error\");</script>";
+        //echo $error; for debugging purposes only
     }
+  }
 
-
-
-
-
-
-
-
-}
-
-if (isset($_POST["DetailsID"]))
-{
-$posted_details_id = $_POST["DetailsID"];
-$_SESSION['posted_details_id'] = $posted_details_id;
-// var_dump($posted_details_id);
-header ('Location: testcases.php');
-// echo  '<script type="text/javascript">swal("Please wait ...", "Getting project details...", "warn");</script>';
-}
-$posted_details_id = NULL;
-
-include_once("classes/class.table.php");
-$table = new table();
-$table->rendertable();
-if(isset($_SESSION['success'])) {
-
-}
-
-
+    if (isset($_POST["Details"]) && is_numeric($_POST["DetailsID"]))
+    {
+    $posted_details_id = $_POST["DetailsID"];
+    $_SESSION['posted_details_id'] = $posted_details_id;
+    // var_dump($posted_details_id);
+    echo  '<script type="text/javascript">swal("Please wait ...", "Getting project details...", "warn");</script>';
+    header ('Location: testcases.php');
+    }
+    $posted_details_id = NULL;
+    include_once("classes/class.table.php");
+    $table = new table();
+    $table->rendertable();
 
 
 ?>

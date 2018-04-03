@@ -26,7 +26,7 @@ class table
   				<td>
           <input type="submit" class="btnadd" name="Delete" value="Delete">
           <input type="hidden" name="DeleteID" value="'; echo $row['ID']; echo '">
-          <input type="submit" class="btndone" value="Details">
+          <input type="submit" class="btndone" name="Details" value="Details">
           <input type="hidden" name="DetailsID" value="'; echo $row['ID']; echo '">
           </td>
           </form>
@@ -45,6 +45,9 @@ class table
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
     $sql="SELECT ID, Name, CreatedBy, ProjectID FROM testcase WHERE ProjectID = $posted_details_id";
     $result=mysqli_query($link,$sql);
+    $numrows = $result->fetch_assoc();
+    // var_dump($numrows);
+    if ($numrows !== NULL) {
       while ($row = mysqli_fetch_assoc($result)) {
       $ID = $row['ID'];
         echo '
@@ -67,7 +70,13 @@ class table
     echo '
 		</tbody>
 	</table>';
-  }
+} else {
+  // header ('Location: dashboard.php');
+  echo "<script type=\"text/javascript\">swal(\"No testcases\", \"\", \"error\");</script>";
+
+}
+}
+
 
   function addproject () {
         echo '<tr>
