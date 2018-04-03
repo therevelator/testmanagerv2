@@ -68,8 +68,8 @@ if (isset($_POST['logout'])) {
 
   if (isset($_POST['add'])) {//put this into a class
     $user = $_SESSION['username'];
+    if (!empty($_POST['ProjectName'])) {
     $name = $_POST['ProjectName'];
-    // $description = $_POST['Description'];
     $timestamp = date("Y-m-d H:i:s");
     try {
       $host = '127.0.0.1';
@@ -103,10 +103,17 @@ if (isset($_POST['logout'])) {
     }
     $conn = null;
     echo "<script type=\"text/javascript\">swal(\"Success :)\", \"Record added...\", \"success\");</script>";
+  }else {
+    echo "<script type=\"text/javascript\">swal(\"Error :(\", \" Name field cannot be empty...\", \"error\");</script>";
   }
+}
 
-  // $_POST['DeleteID'] = NULL;
-  // $_POST['Delete'] = NULL;
+
+
+
+
+
+
   if (isset($_POST["Delete"]))
 {
   $delete = $_POST["Delete"];
@@ -134,16 +141,11 @@ if (isset($_POST['logout'])) {
     ];
     $pdo = new PDO($dsn, $user, $pass, $opt);
     $stmt = $pdo->query("DELETE FROM testcase WHERE ID = '".$ID."'");
-    // while ($row = $stmt->fetch())
-    // {
-    //     echo $row['name'] . "\n";
-    // }
     } catch (Exception $e) {
       $error = $e->getMessage();
       echo $error;
     }
     echo "<script type=\"text/javascript\">swal(\"Deleted \", \"\", \"error\");</script>";
-
 }
 
 include_once("classes/class.table.php");
