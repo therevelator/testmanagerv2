@@ -48,15 +48,18 @@ input[type="submit"]:hover{
   cursor:pointer;
 }
 
-.livesearch {
-  width: 25%;
-  margin-left: 54%;
+.livesearchtestcases {
+  width: 55%;
+  margin-left: 21.5%;
+  margin-top: -20px;
   position:  absolute;
   z-index: 99 !important;
-  background-color: darkgoldenrod;
+  background-color: lightgray;
   align-content: center;
   align-items: center;
   border-radius: 10px;
   border-color: black;
   text-align: center;
+    -webkit-box-shadow: 3px 3px 18px 3px rgba(0,0,0,0.91) ;
+  box-shadow: 3px 3px 18px 3px rgba(0,0,0,0.91) ;
 }

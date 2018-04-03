@@ -47,7 +47,7 @@ if (isset($_POST['back'])) {
   </form>
 </div>
 <form>
-      <div id="livesearch" class="livesearch"></div>
+      <div id="livesearch" class="livesearchtestcases"></div>
 </form>
 
 <div class="container">
