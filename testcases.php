@@ -1,4 +1,7 @@
-
+<head>
+ <link type="text/css" rel="stylesheet" href="css/tabletestcases.css" />
+  <link type="text/css" rel="stylesheet" href="css/testcases.css" />
+</head>
 <script>
 function showResult(str) {
   if (str.length==0) {
@@ -22,17 +25,20 @@ function showResult(str) {
   xmlhttp.send();
 }
 </script>
-<?php session_start(); var_dump($_POST);  if (isset($_SESSION['username'])) {  ?>
+<?php session_start();  if (isset($_SESSION['username'])) {  ?>
 <?php include_once('classes/class.header.php'); $headers = new headers(); ?>
 <?php
 if (isset($_POST['logout'])) {
   include_once('classes/class.Logout.php');
   $manageUsers = new Logout();
 }
+if (isset($_POST['back'])) {
+  header ('Location: dashboard.php');
+}
 ?>
 <div align="center">
   <form class="form" method="post" align="center">
-      <button class="dc_3d_button black" name="logout">Log out</button>
+      <button class="dc_3d_button black" name="back">Back to Projects</button>
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="logout">Log out</button>

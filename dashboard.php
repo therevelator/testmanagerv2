@@ -1,4 +1,7 @@
-
+<head>
+  <link type="text/css" rel="stylesheet" href="css/table.css" />
+  <link type="text/css" rel="stylesheet" href="css/dashboard.css" />
+</head>
 <script>
 function showResult(str) {
   if (str.length==0) {
@@ -22,7 +25,7 @@ function showResult(str) {
   xmlhttp.send();
 }
 </script>
-<?php session_start(); var_dump($_POST);  if (isset($_SESSION['username'])) {  ?>
+<?php session_start();  if (isset($_SESSION['username'])) {  ?>
 <?php include_once('classes/class.header.php'); $headers = new headers(); ?>
 <?php
 if (isset($_POST['logout'])) {
@@ -154,7 +157,7 @@ if (isset($_POST["DetailsID"]))
 {
 $posted_details_id = $_POST["DetailsID"];
 $_SESSION['posted_details_id'] = $posted_details_id;
-var_dump($posted_details_id);
+// var_dump($posted_details_id);
 header ('Location: testcases.php');
 // echo  '<script type="text/javascript">swal("Please wait ...", "Getting project details...", "warn");</script>';
 }

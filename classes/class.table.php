@@ -33,7 +33,6 @@ class table
   			</tr>';
       }
 
-
     echo '
 		</tbody>
 	</table>';
@@ -42,7 +41,7 @@ class table
   function rendertestcases()
   {
     $posted_details_id = $_SESSION['posted_details_id'];
-    var_dump($_SESSION);
+    // var_dump($_SESSION);
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
     $sql="SELECT ID, Name, CreatedBy, ProjectID FROM testcase WHERE ProjectID = $posted_details_id";
     $result=mysqli_query($link,$sql);
