@@ -153,10 +153,11 @@ if (isset($_POST['back'])) {
 include_once("classes/class.table.php");
 $table = new table();
 $table->rendertestcases();
-if(isset($_SESSION['success'])) {
 
-}
+
 ?>
+
+
 </div>
 <?php  } else {echo  "<script type=\"text/javascript\">swal(\"Nope !\", \"Not allowed, redirecting...\", \"warn\");</script>"; header ('Location: login.php');}
 

@@ -45,35 +45,42 @@ class table
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
     $sql="SELECT ID, Name, CreatedBy, ProjectID FROM testcase WHERE ProjectID = $posted_details_id";
     $result=mysqli_query($link,$sql);
-    $numrows = $result->fetch_assoc();
+    // if ($result->num_rows == 0) {
+    //   echo "<script type=\"text/javascript\">swal(\"No testcases\", \"\", \"error\");</script>";
+    // }
+    // $numrows = $result->fetch_assoc();//this might be the issue with the missing first record
     // var_dump($numrows);
-    if ($numrows !== NULL) {
-      while ($row = mysqli_fetch_assoc($result)) {
+    // if (!empty($result)) {
+    //   # code...
+    // }
+
+      while ($row = mysqli_fetch_assoc($result)){ //this brings results -1. we have to solve this immediately
       $ID = $row['ID'];
         echo '
-        <tr>
-  				<td>'; echo $row['ID']; echo '</td>
-  				<td>'; echo $row['Name']; echo '</td>
-  				<td>'; echo $row['CreatedBy']; echo '</td>
-          <td>'; echo $row['ProjectID']; echo '</td>
-          <form method="post">
-  				<td>
-          <input type="submit" class="btnadd" name="Delete" value="Delete">
-          <input type="hidden" name="DeleteID" value="'; echo $row['ID']; echo '">
-          <button type="submit" class="btndone" name="Details" value="Details">Details</button>
-          <input type="hidden" id="DetailsID" name="DetailsID" value="'; echo $row['ID']; echo '">
-          </td>
-          </form>
-  			</tr>';
+
+            <tr>
+      				<td>'; echo $row['ID']; echo '</td>
+      				<td>'; echo $row['Name']; echo '</td>
+      				<td>'; echo $row['CreatedBy']; echo '</td>
+              <td>'; echo $row['ProjectID']; echo '</td>
+              <form method="post">
+      				<td>
+              <input type="submit" class="btnadd" name="Delete" value="Delete">
+              <input type="hidden" name="DeleteID" value="'; echo $row['ID']; echo '">
+              <button type="submit" class="btndone" name="Details" value="Details">Details</button>
+              <input type="hidden" id="DetailsID" name="DetailsID" value="'; echo $row['ID']; echo '">
+              </td>
+              </form>
+      			</tr>';
       }
 
     echo '
 		</tbody>
 	</table>';
-  } else {
-  echo "<script type=\"text/javascript\">swal(\"No testcases\", \"\", \"error\");</script>";
 
-  }
+  // echo "<script type=\"text/javascript\">swal(\"No testcases\", \"\", \"error\");</script>";
+
+
 }
 
 
@@ -108,7 +115,7 @@ class table
             </td>
           </form>
         </tr>';
-        
+
   }
 }
 ?>
