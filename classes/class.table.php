@@ -7,12 +7,12 @@ $conn = new dbConnect();
  */
 class table
 {
-  function rendertable()
+  function rendertable($offset, $no_of_records_per_page)
   {
     @flush();
 
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
-    $sql="SELECT ID, ProjectName, CreatedBy, Description FROM projects ORDER BY ID";
+    $sql="SELECT ID, ProjectName, CreatedBy, Description FROM projects LIMIT $offset, $no_of_records_per_page";
     $result=mysqli_query($link,$sql);
       while ($row = mysqli_fetch_assoc($result)) {
       $ID = $row['ID'];
