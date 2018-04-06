@@ -7,7 +7,7 @@ $conn = new dbConnect();
  */
 class table
 {
-  function rendertable($offset, $no_of_records_per_page)
+  function rendertable($offset, $no_of_records_per_page, $projectUrlID = NULL)
   {
     @flush();
 
@@ -38,12 +38,12 @@ class table
 	</table>';
   }
 
-  function rendertestcases()
+  function rendertestcases($offsettests, $no_of_records_per_pagetests)
   {
     $posted_details_id = $_SESSION['posted_details_id'];
     // var_dump($_SESSION);
     $link = mysqli_connect("127.0.0.1", "root", "", "testmanager");
-    $sql="SELECT ID, Name, CreatedBy, ProjectID FROM testcase WHERE ProjectID = $posted_details_id";
+    $sql="SELECT ID, Name, CreatedBy, ProjectID FROM testcase WHERE ProjectID = $posted_details_id LIMIT $offsettests, $no_of_records_per_pagetests";
     $result=mysqli_query($link,$sql);
     // if ($result->num_rows == 0) {
     //   echo "<script type=\"text/javascript\">swal(\"No testcases\", \"\", \"error\");</script>";

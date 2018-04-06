@@ -157,7 +157,7 @@ if (isset($_POST['logout'])) {
     $_SESSION['posted_details_id'] = $posted_details_id;
     // var_dump($posted_details_id);
     echo  '<script type="text/javascript">swal("Please wait ...", "Getting project details...", "warn");</script>';
-    header ('Location: testcases.php');
+    header ('Location: testcases.php?projectid=' . $posted_details_id);
     }
     $posted_details_id = NULL;
 
@@ -205,6 +205,7 @@ if (isset($_POST['logout'])) {
                 <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
             </li>
             <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+            <!-- asta e buna si pentru link-uri pe sus pentru search -->
         </ul>
     </body>
     </html>

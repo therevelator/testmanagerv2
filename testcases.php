@@ -150,14 +150,53 @@ if (isset($_POST['back'])) {
     echo "<script type=\"text/javascript\">swal(\"Deleted \", \"\", \"error\");</script>";
 }
 
-include_once("classes/class.table.php");
-$table = new table();
-$table->rendertestcases();
+if (isset($_GET['pageno'])) {
+            $pageno = $_GET['pageno'];
+        } else {
+            $pageno = 1;
+        }
+        $no_of_records_per_pagetests = 7;
+        $offsettests = ($pageno-1) * $no_of_records_per_pagetests;
 
+        $conn=mysqli_connect("localhost","root","","testmanager");
+        // Check connection
+        if (mysqli_connect_errno()){
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            die();
+        }
+        $posted_details_id = $_SESSION['posted_details_id'];
+        $total_pages_sql = "SELECT COUNT(*) FROM testcase WHERE ProjectID = $posted_details_id";
+        $result = mysqli_query($conn,$total_pages_sql);
+
+        $total_rows = mysqli_fetch_array($result)[0];
+
+        $total_pages = ceil($total_rows / $no_of_records_per_pagetests);
+        //var_dump($total_pages);
+        $sql = "SELECT * FROM testcase WHERE ProjectID = $posted_details_id LIMIT $offsettests, $no_of_records_per_pagetests";
+        $res_data = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_array($res_data)){
+            //here goes the data
+        }
+        mysqli_close($conn);
+        include_once("classes/class.table.php");
+        $table = new table();
+        $table->rendertestcases($offsettests, $no_of_records_per_pagetests);
 
 ?>
 
-
+    <ul class="pagination">
+        <li><a href="?pageno=1">First</a></li>
+        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+        </li>
+        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+        </li>
+        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+        <!-- asta e buna si pentru link-uri pe sus pentru search -->
+    </ul>
+</body>
+</html>
 </div>
 <?php  } else {echo  "<script type=\"text/javascript\">swal(\"Nope !\", \"Not allowed, redirecting...\", \"warn\");</script>"; header ('Location: login.php');}
 
