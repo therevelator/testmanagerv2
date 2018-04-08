@@ -56,6 +56,7 @@ class table
 
       while ($row = mysqli_fetch_assoc($result)){ //this brings results -1. we have to solve this immediately
       $ID = $row['ID'];
+      $_SESSION['ID'] = $ID;
         echo '
 
             <tr>
@@ -77,6 +78,7 @@ class table
     echo '
 		</tbody>
 	</table>';
+  return $_SESSION['ID'];
 
   // echo "<script type=\"text/javascript\">swal(\"No testcases\", \"\", \"error\");</script>";
 

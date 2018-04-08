@@ -1,6 +1,10 @@
 <head>
   <link type="text/css" rel="stylesheet" href="css/table.css" />
   <link type="text/css" rel="stylesheet" href="css/dashboard.css" />
+  <link type="text/css" rel="stylesheet" href="css/sweetalert.css" />
+  <script src="js/sweetalert.min.js"></script>
+
+
 </head>
 <script>
 function showResult(str) {
@@ -46,10 +50,6 @@ if (isset($_POST['logout'])) {
 <form>
       <div id="livesearch" class="livesearch"></div>
 </form>
-
-
-
-
 
 <div class="container">
   <table>
@@ -156,10 +156,12 @@ if (isset($_POST['logout'])) {
     $posted_details_id = $_POST["DetailsID"];
     $_SESSION['posted_details_id'] = $posted_details_id;
     // var_dump($posted_details_id);
-    echo  '<script type="text/javascript">swal("Please wait ...", "Getting project details...", "warn");</script>';
+    echo "<script type=\"text/javascript\">swal(\"Please wait...\", \"Getting project details\", \"warn\");</script>";
     header ('Location: testcases.php?projectid=' . $posted_details_id);
     }
+
     $posted_details_id = NULL;
+
 
 
     if (isset($_GET['pageno'])) {
@@ -195,7 +197,7 @@ if (isset($_POST['logout'])) {
             $table->rendertable($offset, $no_of_records_per_page);
 
 ?>
-
+<!-- add check: if query not empty, display pagination -->
         <ul class="pagination">
             <li><a href="?pageno=1">First</a></li>
             <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">

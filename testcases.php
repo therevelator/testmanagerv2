@@ -43,6 +43,7 @@ if (isset($_POST['back'])) {
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="logout">Log out</button>
       <button class="dc_3d_button black" name="AddRecord">Add Record</button>
+      <!-- if nothing is returned, no results, then disable the search and don't show the header -->
       <input type="text" placeholder="Search.." onkeyup="showResult(this.value)" style="width: 300px;height: 40px;margin-top: 7px; text-align: center; color: aliceblue;">
   </form>
 </div>
@@ -150,7 +151,8 @@ if (isset($_POST['back'])) {
     echo "<script type=\"text/javascript\">swal(\"Deleted \", \"\", \"error\");</script>";
 }
 
-if (isset($_GET['pageno'])) {
+
+    if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
             $pageno = 1;
@@ -166,6 +168,7 @@ if (isset($_GET['pageno'])) {
         }
         $posted_details_id = $_SESSION['posted_details_id'];
         $total_pages_sql = "SELECT COUNT(*) FROM testcase WHERE ProjectID = $posted_details_id";
+        // var_dump($total_pages_sql);
         $result = mysqli_query($conn,$total_pages_sql);
 
         $total_rows = mysqli_fetch_array($result)[0];
@@ -181,6 +184,9 @@ if (isset($_GET['pageno'])) {
         include_once("classes/class.table.php");
         $table = new table();
         $table->rendertestcases($offsettests, $no_of_records_per_pagetests);
+        if ($_SESSION['ID'] !== NULL) {
+
+
 
 ?>
 
@@ -195,6 +201,10 @@ if (isset($_GET['pageno'])) {
         <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
         <!-- asta e buna si pentru link-uri pe sus pentru search -->
     </ul>
+<?php
+}
+$_SESSION['ID'] = NULL;
+?>
 </body>
 </html>
 </div>
